@@ -6,7 +6,7 @@ import numpy as np
 from matplotlib.widgets import Button
 
 finnhub_client = finnhub.Client(api_key="c7stlf2ad3i9jn7rlr9g")
-
+asdasdasd
 def ColorCheck(p):
   if p[0] > p[-1]:
     color = "red"

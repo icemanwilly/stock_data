@@ -19,25 +19,6 @@ def ColorCheck(p):
     color = "green"
   return color
 
-
-def oneYear(val):
-  prices = finnhub_client.stock_candles("AAPL", "D", int(time.time()) - 31536000, int(time.time()))["c"]
-  x = np.linspace(0, len(prices) / 30, len(prices))
-  color = ColorCheck(prices)
-  plt.sca(ax)
-  plt.cla()
-  ax.plot(x, prices, color=color)
-  plt.show()
-
-def fiveYear(val):
-  prices = finnhub_client.stock_candles("AAPL", "W", int(time.time()) - 157680000, int(time.time()))["c"]
-  x = np.linspace(0, len(prices) / 30, len(prices))
-  color = ColorCheck(prices)
-  plt.sca(ax)
-  plt.cla()
-  ax.plot(x, prices, color=color)
-  plt.show()
-
 def updateGraph(val, dur):
     """Example function triggered by Tkinter GUI to change matplotlib graphs."""
     global currentGraph
@@ -57,8 +38,9 @@ def updateGraph(val, dur):
     elif dur == "1 Year":
       prices = finnhub_client.stock_candles(val, "D", int(time.time()) - 31536000, int(time.time()))["c"]
       x = np.linspace(0, len(prices) / 30, len(prices))
-  color = ColorCheck(prices)
-      
+    elif dur == "5 Years":
+       prices = finnhub_client.stock_candles("AAPL", "W", int(time.time()) - 157680000, int(time.time()))["c"]
+    x = np.linspace(0, len(prices) / 30, len(prices))
     color = ColorCheck(prices)
     plt.plot(x,prices, color=color)
     fig.canvas.draw()
